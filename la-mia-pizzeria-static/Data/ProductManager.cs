@@ -48,6 +48,12 @@ namespace la_mia_pizzeria_static.Data
                 return db.Products.FirstOrDefault(p => p.Id == id);
         }
 
+        public static Product GetProductByTitle(string title)
+        {
+            using ProductContext db = new ProductContext();
+            return db.Products.FirstOrDefault(p => p.Name == title);
+        }
+
         public static void InsertProduct(Product product, List<string> SelectedIngredients = null)
         {
             using ProductContext db = new ProductContext();
