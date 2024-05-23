@@ -1,0 +1,51 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+    Layout = "_MyLayout";
+
+    Pizzeria mypizzeria = new Pizzeria("Pizzeria da Samu");
+}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@mypizzeria.Name</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+</head>
+    <body>
+        <div class="container">
+        <div class="d-flex justify-content-center"><img src="~/img/Da Samu.png" /></div>
+            
+            <div class="row">
+                @foreach (var pizza in mypizzeria.Pizzas)
+                {
+                    <div class="col-md-4">
+                        <div class="pizza">
+                            <img src="@Url.Content(pizza.Image)"/>
+                            <h4 class="pt-3">@pizza.Name</h4>
+                            <p>@pizza.Description</p>
+                            <div class="ms-auto">@pizza.Price €</div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+        <style>
+        .pizza {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            padding: 15px;
+        }
+
+        .pizza img {
+                width: 150px;
+                height: 150px;
+        }
+
+        .pizza p {
+                flex-grow: 1;
+        }
+        </style>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    </body>
+</html>

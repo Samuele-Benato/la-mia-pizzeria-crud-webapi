@@ -1,0 +1,75 @@
+
+@using Microsoft.AspNetCore.Identity
+
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
+
+
+<ul class="navbar-nav">
+@if (SignInManager.IsSignedIn(User))
+{
+    @* <li class="nav-item">
+            <a id="manage" class="nav-link lightbeige" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage"> Profile</a>
+    </li> *@
+        <li class="nav-item">
+            <form id="logoutForm" class="form-inline " asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Product", new { area = "" })">
+                <button id="logout" type="submit" class="nav-link btn-custom">Logout</button>
+        </form>
+    </li>
+}
+else
+{
+    <li class="nav-item">
+            <a class="nav-link lightbeige" id="register" asp-area="Identity" asp-page="/Account/Register">Register</a>
+    </li>
+    <li class="nav-item">
+            <a class="nav-link lightbeige" id="login" asp-area="Identity" asp-page="/Account/Login">Login</a>
+    </li>
+}
+</ul>
+<style>
+    .nav-link.lightbeige {
+        color: #E3DCC9;
+        position: relative;
+        text-decoration: none;
+        font-size: 1.25rem;
+    }
+    .btn-custom{
+        background: none;
+        color: #E3DCC9;
+        border: none;
+        border-radius: 3px;
+    }
+
+        .nav-link.lightbeige::after
+         {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0px;
+            width: 0;
+            height: 2px;
+            background-color: #ff0000;
+            transition: width 0.5s ease;
+        }
+
+        .nav-link.lightbeige:hover::after {
+            width: 100%;
+        }
+
+    .navbar-toggler {
+        border-color: rgba(227, 220, 201, 0.5); /* Bordo con il colore #E3DCC9 */
+    }
+
+    .navbar-toggler-icon {
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Cpath stroke='rgba(227, 220, 201, 0.5)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+    }
+
+    .border-custom {
+        border-top: 1px solid #4B4B4B;
+        color: #4B4B4B;
+    }
+</style>
+
+        
